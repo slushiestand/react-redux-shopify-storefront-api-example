@@ -16,28 +16,31 @@ const UPDATE_QUANTITY_IN_CART = 'UPDATE_QUANTITY_IN_CART'
 const REMOVE_LINE_ITEM_IN_CART = 'REMOVE_LINE_ITEM_IN_CART'
 const OPEN_CART = 'OPEN_CART'
 const CLOSE_CART = 'CLOSE_CART'
+const PRODUCTS_TAGS = 'PRODUCTS_TAGS'
 
 // reducer
 export default (state = initState, action) => {
   switch (action.type) {
     case CLIENT_CREATED:
-      return {...state, client: action.payload}
+      return { ...state, client: action.payload }
     case PRODUCTS_FOUND:
-      return {...state, products: action.payload}
+      return { ...state, products: action.payload }
+    case PRODUCTS_TAGS:
+      return { ...state, tags: action.payload }
     case CHECKOUT_FOUND:
-      return {...state, checkout: action.payload}
+      return { ...state, checkout: action.payload }
     case SHOP_FOUND:
-      return {...state, shop: action.payload}
+      return { ...state, shop: action.payload }
     case ADD_VARIANT_TO_CART:
-      return {...state, isCartOpen: action.payload.isCartOpen, checkout: action.payload.checkout}
+      return { ...state, isCartOpen: action.payload.isCartOpen, checkout: action.payload.checkout }
     case UPDATE_QUANTITY_IN_CART:
-      return {...state, checkout: action.payload.checkout}
+      return { ...state, checkout: action.payload.checkout }
     case REMOVE_LINE_ITEM_IN_CART:
-      return {...state, checkout: action.payload.checkout}
+      return { ...state, checkout: action.payload.checkout }
     case OPEN_CART:
-      return {...state, isCartOpen: true}
+      return { ...state, isCartOpen: true }
     case CLOSE_CART:
-      return {...state, isCartOpen: false}
+      return { ...state, isCartOpen: false }
     default:
       return state
   }

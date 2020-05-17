@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import Product from './Product';
 
 class Products extends Component {
-  
+
   render() {
+    const { stateTags = {} } = this.props
     let products;
     if (this.props.products) {
-    products = this.props.products.map((product) => {
-        return (
-          <Product
-            addVariantToCart={this.props.addVariantToCart}
-            client={this.props.client}
-            key={product.id.toString()}
-            product={product}
-          />
-        );
+      products = this.props.products.map((product) => {
+        const currentProductId = product.id
+        const tagsForProduct = stateTags[currentProductId]
+        const { tag = '' } = tagsForProduct
+        if (tag.includes(this.props.tag)) {
+          return (
+            <Product
+              addVariantToCart={this.props.addVariantToCart}
+              client={this.props.client}
+              key={product.id.toString()}
+              product={product}
+            />
+          );
+        }
       });
     } else {
       products = <p>Loading...</p>
